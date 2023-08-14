@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { IPost } from '../models/IPost';
-import { map } from 'rxjs';
+import { combineLatest, map } from 'rxjs';
+import { DCategoryService } from './dcategory.service';
 
 @Injectable({
   providedIn: 'root',
@@ -22,6 +23,24 @@ export class DPostService {
       })
     );
 
-    
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private categoryService: DCategoryService
+  ) {}
+
+  postsWithCategory$ = combineLatest([
+    this.posts$,
+    this.categoryService.categories$,
+  ]).pipe(
+    map(([posts, categories]) => {
+      return posts.map((post) => {
+        return {
+          ...post,
+          categoryName: categories.find(
+            (category) => post.categoryId == category.id
+          )?.title,
+        } as IPost;
+      });
+    })
+  );
 }

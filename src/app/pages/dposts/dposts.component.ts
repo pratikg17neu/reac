@@ -8,7 +8,7 @@ import { DPostService } from '../../services/dposts.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DpostsComponent {
-  posts$ = this.postService.posts$;
+  posts$ = this.postService.postsWithCategory$;
 
   constructor(private postService: DPostService) {}
 }
