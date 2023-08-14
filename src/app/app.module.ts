@@ -7,8 +7,9 @@ import { HeaderComponent } from './header/header.component';
 import { PostsComponent } from './pages/posts/posts.component';
 import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './pages/home/home.component';
+import { DpostsComponent } from './pages/dposts/dposts.component';
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, PostsComponent, HomeComponent],
+  declarations: [AppComponent, HeaderComponent, PostsComponent, HomeComponent, DpostsComponent],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [],
   bootstrap: [AppComponent],
